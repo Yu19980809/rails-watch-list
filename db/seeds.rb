@@ -20,7 +20,7 @@ movies = movies["results"]
   movie = Movie.new
   movie.title = data["title"]
   movie.overview = data["overview"]
-  movie.poster_url = data["poster_path"]
+  movie.poster_url = "https://image.tmdb.org/t/p/w500" + data["poster_path"]
   movie.rating = data["vote_average"]
   movie.save!
 
