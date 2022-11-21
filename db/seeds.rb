@@ -12,7 +12,7 @@ puts "Finished deleting"
 
 puts "Adding new movies"
 
-movies = JSON.parse(URI.open("https://api.themoviedb.org/3/movie/top_rated?api_key=ffbd3198075d3482fa2a18de76578c2c&language=en-US&page=1").read)
+movies = JSON.parse(URI.open("http://tmdb.lewagon.com/movie/top_rated").read)
 movies = movies["results"]
 
 5.times do
