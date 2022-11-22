@@ -5,7 +5,7 @@
     <% @list.movies.each do |movie| %>
       <li class="list-group-item d-flex justify-content-between">
         <%= movie.title %>
-        <%= link_to "Delete", bookmark_path(Bookmark.where(movie: movie, list: @list)[0]), status: :see_other, data: { turbo_method: :delete, turbo_message: "Are you sure?" } %>
+        <%= link_to "Delete", bookmark_path(Bookmark.where(movie: movie, list: @list)[0]), status: :see_other, data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>
       </li>
     <% end %>
   </ul>
