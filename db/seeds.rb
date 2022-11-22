@@ -6,6 +6,7 @@
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
 
+# movie
 puts "Deleting previous #{Movie.count} movie(s)"
 Movie.destroy_all
 puts "Finished deleting"
@@ -15,16 +16,31 @@ puts "Adding new movies"
 movies = JSON.parse(URI.open("http://tmdb.lewagon.com/movie/top_rated").read)
 movies = movies["results"]
 
-5.times do
-  data = movies.sample
-  movie = Movie.new
-  movie.title = data["title"]
-  movie.overview = data["overview"]
-  movie.poster_url = "https://image.tmdb.org/t/p/w500" + data["poster_path"]
-  movie.rating = data["vote_average"]
-  movie.save!
+movies.each do |movie|
+  new_movie = Movie.create(
+    title: movie["title"],
+    overview: movie["overview"],
+    poster_url: "https://image.tmdb.org/t/p/w500#{movie["poster_path"]}",
+    rating: movie["vote_average"]
+  )
 
-  puts "Adding #{movie.id} - #{movie.title}"
+  puts "Adding #{new_movie.id} - #{new_movie.title}"
 end
 
 puts "Finished adding, #{Movie.count} movie(s) have been added."
+
+# List
+puts ""
+puts "-------------------------------"
+puts ""
+
+puts "Deleting previous #{List.count} list(s)"
+List.destroy_all
+puts "Finished deleting"
+
+puts "Adding new lists"
+
+List.create(name: "Comedy")
+List.create(name: "Classic")
+
+puts "Finished adding, #{List.count} list(s) have been added."
