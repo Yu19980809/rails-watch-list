@@ -8,6 +8,8 @@
         <%= f.input :movie, collection: @movies, prompt: "Select the movie", selected: :first %>
         <%= f.button :submit, class: "btn btn-primary" %>
       <% end %>
+
+      <%= link_to "Back List", list_path(@list), class: "btn btn-primary mt-3" %>
     </div>
   </div>
 </div>

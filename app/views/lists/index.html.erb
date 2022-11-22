@@ -1,14 +1,13 @@
 <div class="container">
-  <h1>All lists</h1>
+  <h1>All the lists</h1>
 
-  <ul class="list-group my-5">
+  <ul class="list-group py-3">
     <% @lists.each do |list| %>
       <li class="list-group-item">
         <%= link_to list.name, list_path(list) %>
-        <%= cl_image_tag list.picture.key, height: 300, width: 400, crop: :fill %>
       </li>
     <% end %>
   </ul>
 
-  <%= link_to "Add list", new_list_path, class: "btn btn-primary" %>
+  <%= link_to "New List", new_list_path, class: "btn btn-primary" %>
 </div>

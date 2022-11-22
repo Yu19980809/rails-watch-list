@@ -1,0 +1,14 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-secondary" style="--bs-bg-opacity: .1;">
+  <div class="container-fluid">
+    <%# letf part %>
+    <img src="../../assets/images/icon.jpg">
+
+    <%# right part %>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <div class="ms-auto d-flex">
+        <%= link_to "My Lists", lists_path, class: "btn btn-outline-success ms-2 my-2 my-sm-0" %>
+        <%= link_to "New List", new_list_path, class: "btn btn-outline-primary ms-2 my-2 my-sm-0" %>
+      </div>
+    </div>
+  </div>
+</nav>

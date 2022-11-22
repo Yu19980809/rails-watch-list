@@ -30,17 +30,17 @@ end
 puts "Finished adding, #{Movie.count} movie(s) have been added."
 
 # List
-puts ""
-puts "-------------------------------"
-puts ""
+# puts ""
+# puts "-------------------------------"
+# puts ""
 
-puts "Deleting previous #{List.count} list(s)"
-List.destroy_all
-puts "Finished deleting"
+# puts "Deleting previous #{List.count} list(s)"
+# List.destroy_all
+# puts "Finished deleting"
 
-puts "Adding new lists"
+# puts "Adding new lists"
 
-List.create(name: "Comedy")
-List.create(name: "Classic")
+# List.create(name: "Comedy")
+# List.create(name: "Classic")
 
-puts "Finished adding, #{List.count} list(s) have been added."
+# puts "Finished adding, #{List.count} list(s) have been added."
