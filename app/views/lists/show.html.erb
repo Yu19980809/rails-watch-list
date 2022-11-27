@@ -1,19 +1,36 @@
-<div class="banner">
-  <%= cl_image_tag(@list.picture.key, height: 300, crop: :fill) %>
+<div class="banner show" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= cl_image_path @list.picture.key, height: 300, crop: :fill %>')">
+  <%= @list.name %> movies
+  <div class="counts">
+    <%= @list.bookmarks.length %> movies
+  </div>
 </div>
 
-<div class="container">
-  <h1><%= @list.name %> movies</h1>
+<div class="container py-5">
+  <%# 添加按钮 %>
+  <p class="text-end">
+    <%= link_to "Add a movie", new_list_bookmark_path(@list), class: "btn btn-success fw-bold fs-6 white" %>
+  </p>
 
-  <ul class="list-group py-3">
-    <% @list.movies.each do |movie| %>
-      <li class="list-group-item d-flex justify-content-between">
-        <%= movie.title %>
-        <%= link_to "Delete", bookmark_path(Bookmark.where(movie: movie, list: @list)[0]), status: :see_other, data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>
-      </li>
+  <%# 展示区域 %>
+  <div class="movies row">
+    <% @list.movies.reverse.each do |movie| %>
+      <div class="col-5">
+        <div class="movie">
+          <img src="<%= movie.poster_url %>" alt="poster of <%= movie.title %>" class="poster">
+          <div class="info">
+            <p>
+              <span class="fw-bold fs-6"><%= movie.title %></span>
+              &nbsp;·&nbsp;
+              <span><%= movie.rating %>⭐</span>
+            </p>
+            <p class="overview" title="<%= movie.overview %>"><%= movie.overview %></p>
+            <div class="footer d-flex justify-content-between">
+              <span class="comment" title="<%= Bookmark.find_by(movie: movie, list: @list).comment %>"><%= Bookmark.find_by(movie: movie, list: @list).comment %></span>
+              <%= link_to "Delete", bookmark_path(Bookmark.find_by(movie: movie, list: @list)), status: :see_other, data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>
+            </div>
+          </div>
+        </div>
+      </div>
     <% end %>
-  </ul>
-
-  <%= link_to "Back Lists", lists_path, class: "btn btn-primary" %>
-  <%= link_to "New Bookmark", new_list_bookmark_path(@list), class: "btn btn-primary" %>
+  </div>
 </div>
